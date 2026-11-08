@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBoost - Разработка сайтов</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        header { background: #333; color: #fff; padding: 2rem 1rem; text-align: center; }
+        .hero h1 { margin: 0 0 1rem; }
+        .btn { background: #28a745; color: #fff; padding: 10px 20px; text-decoration: none; border: none; cursor: pointer; font-size: 1.1rem; }
+        section { padding: 2rem 1rem; max-width: 800px; margin: auto; }
+        .services, .social-proof { display: flex; flex-direction: column; gap: 1rem; }
+        @media(min-width: 600px) { .services, .social-proof { flex-direction: row; justify-content: space-between; } }
+        .card { background: #f4f4f4; padding: 1rem; border-radius: 5px; flex: 1; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input, textarea { padding: 10px; font-size: 1rem; width: 100%; box-sizing: border-box; }
+        footer { background: #333; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
+        #responseMessage { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Hero section -->
+    <header class="hero">
+        <h1>TechBoost Agency</h1>
+        <p>Мы создаем быстрые и конверсионные сайты для вашего бизнеса.</p>
+        <a href="#contact" class="btn">Оставить заявку</a>
+    </header>
+
+    <!-- 2. About or services -->
+    <section id="services">
+        <h2>Наши услуги</h2>
+        <div class="services">
+            <div class="card">
+                <h3>Landing Pages</h3>
+                <p>Одностраничные сайты, которые превращают посетителей в клиентов.</p>
+            </div>
+            <div class="card">
+                <h3>Интеграция с n8n</h3>
+                <p>Автоматизация бизнес-процессов и обработка лидов 24/7.</p>
+            </div>
+            <div class="card">
+                <h3>AI Решения</h3>
+                <p>Внедрение умных ботов на базе передовых нейросетей.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Social proof -->
+    <section id="proof">
+        <h2>Почему мы?</h2>
+        <div class="social-proof">
+            <div class="card">
+                <p>"TechBoost увеличили наши продажи на 40% за месяц!" - <strong>CEO, Компании X</strong></p>
+            </div>
+            <div class="card">
+                <p><strong>99%</strong> успешно завершенных проектов вовремя.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Contact or lead form -->
+    <section id="contact">
+        <h2>Свяжитесь с нами</h2>
+        <form id="leadForm">
+            <input type="text" id="name" placeholder="Ваше имя" required>
+            <input type="email" id="email" placeholder="Ваш Email" required>
+            <textarea id="message" rows="4" placeholder="Какая услуга вас интересует?" required></textarea>
+            <button type="submit" class="btn">Отправить запрос</button>
+            <div id="responseMessage"></div>
+        </form>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer>
+        <p>Email: hello@techboost.test | Телефон: +7 777 000 00 00</p>
+        <p>© 2026 TechBoost. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const responseDiv = document.getElementById('responseMessage');
+            btn.disabled = true;
+            btn.textContent = 'Отправка...';
+
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // ЗАМЕНИТЬ НА СВОЙ PRODUCTION WEBHOOK URL ИЗ N8N
+                const webhookUrl = 'https://ai2.mnu.kz/webhook/YOUR-WEBHOOK-ID'; 
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    responseDiv.style.color = 'green';
+                    responseDiv.textContent = 'Thank you, we will contact you shortly'; // Response to the page 
+                    e.target.reset();
+                } else {
+                    responseDiv.style.color = 'red';
+                    responseDiv.textContent = 'Ошибка валидации или сервера. Проверьте данные.';
+                }
+            } catch (error) {
+                responseDiv.style.color = 'red';
+                responseDiv.textContent = 'Ошибка сети. Попробуйте позже.';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Отправить запрос';
+            }
+        });
+    </script>
+</body>
+</html>
