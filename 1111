@@ -3,86 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBoost - Разработка сайтов</title>
+    <title>Аура Цветов — Авторские букеты с душой</title>
+    <!-- Подключение красивых шрифтов от Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        header { background: #333; color: #fff; padding: 2rem 1rem; text-align: center; }
-        .hero h1 { margin: 0 0 1rem; }
-        .btn { background: #28a745; color: #fff; padding: 10px 20px; text-decoration: none; border: none; cursor: pointer; font-size: 1.1rem; }
-        section { padding: 2rem 1rem; max-width: 800px; margin: auto; }
-        .services, .social-proof { display: flex; flex-direction: column; gap: 1rem; }
-        @media(min-width: 600px) { .services, .social-proof { flex-direction: row; justify-content: space-between; } }
-        .card { background: #f4f4f4; padding: 1rem; border-radius: 5px; flex: 1; }
-        form { display: flex; flex-direction: column; gap: 10px; }
-        input, textarea { padding: 10px; font-size: 1rem; width: 100%; box-sizing: border-box; }
-        footer { background: #333; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
-        #responseMessage { margin-top: 10px; font-weight: bold; }
+        :root {
+            --primary: #d4a373;
+            --bg-light: #fdfcf8;
+            --text-dark: #2b2b2b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        /* 1. Hero section */
+        header.hero {
+            /* Фоновое изображение с затемнением для читаемости текста */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1490750967868-88cb4ec06509?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0 0 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 35px;
+            text-decoration: none;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #bc8f5f;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.8rem;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media(min-width: 768px) {
+            .grid {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        /* 2. Services section */
+        .card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            flex: 1;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* 4. Contact form */
+        #contact {
+            background-color: #f7f3eb;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        input, textarea {
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #fafafa;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* 5. Footer */
+        footer {
+            background: #2b2b2b;
+            color: #aaaaaa;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        #responseMessage {
+            margin-top: 15px;
+            font-weight: 500;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
     <!-- 1. Hero section -->
     <header class="hero">
-        <h1>TechBoost Agency</h1>
-        <p>Мы создаем быстрые и конверсионные сайты для вашего бизнеса.</p>
-        <a href="#contact" class="btn">Оставить заявку</a>
+        <h1>Аура Цветов</h1>
+        <p>Свежие авторские букеты с доставкой за 1 час. Создаем настроение для ваших близких.</p>
+        <a href="#contact" class="btn">Заказать букет</a>
     </header>
 
     <!-- 2. About or services -->
     <section id="services">
         <h2>Наши услуги</h2>
-        <div class="services">
+        <div class="grid">
             <div class="card">
-                <h3>Landing Pages</h3>
-                <p>Одностраничные сайты, которые превращают посетителей в клиентов.</p>
+                <h3>Авторские букеты</h3>
+                <p>Эксклюзивные композиции от шеф-флориста под любой повод и бюджет.</p>
             </div>
             <div class="card">
-                <h3>Интеграция с n8n</h3>
-                <p>Автоматизация бизнес-процессов и обработка лидов 24/7.</p>
+                <h3>Свадебная флористика</h3>
+                <p>Нежные букеты невесты, бутоньерки и полное цветочное оформление зала.</p>
             </div>
             <div class="card">
-                <h3>AI Решения</h3>
-                <p>Внедрение умных ботов на базе передовых нейросетей.</p>
+                <h3>Подписка на цветы</h3>
+                <p>Регулярная доставка свежих цветов домой или в офис раз в неделю.</p>
             </div>
         </div>
     </section>
 
-    <!-- 3. Social proof -->
+    <!-- 3. Social proof or facts -->
     <section id="proof">
-        <h2>Почему мы?</h2>
-        <div class="social-proof">
+        <h2>Почему выбирают нас</h2>
+        <div class="grid">
             <div class="card">
-                <p>"TechBoost увеличили наши продажи на 40% за месяц!" - <strong>CEO, Компании X</strong></p>
+                <p>«Потрясающий сервис! Заказала букет маме на юбилей — цветы простояли больше недели. Очень красиво и стильно.»<br><br><strong>— Анна С.</strong></p>
             </div>
             <div class="card">
-                <p><strong>99%</strong> успешно завершенных проектов вовремя.</p>
+                <p><strong style="font-size: 2.5rem; color: var(--primary);">5 000+</strong><br>Доставленных букетов и счастливых улыбок за этот год.</p>
+            </div>
+            <div class="card">
+                <p>«Единственный магазин в городе, где собирают такие нестандартные композиции с экзотикой. Спасибо!»<br><br><strong>— Михаил В.</strong></p>
             </div>
         </div>
     </section>
 
     <!-- 4. Contact or lead form -->
     <section id="contact">
-        <h2>Свяжитесь с нами</h2>
+        <h2>Оставьте заявку</h2>
         <form id="leadForm">
             <input type="text" id="name" placeholder="Ваше имя" required>
             <input type="email" id="email" placeholder="Ваш Email" required>
-            <textarea id="message" rows="4" placeholder="Какая услуга вас интересует?" required></textarea>
-            <button type="submit" class="btn">Отправить запрос</button>
+            <textarea id="message" rows="4" placeholder="Какой букет вы ищете или на какую дату?" required></textarea>
+            <button type="submit" class="btn" style="width: 100%;">Отправить запрос</button>
             <div id="responseMessage"></div>
         </form>
     </section>
 
     <!-- 5. Footer -->
     <footer>
-        <p>Email: hello@techboost.test | Телефон: +7 777 000 00 00</p>
-        <p>© 2026 TechBoost. Все права защищены.</p>
+        <p>Астана, ул. Цветочная, 15 | Email: hello@auraflowers.test | +7 (777) 123-45-67</p>
+        <p>© 2026 Аура Цветов. Все права защищены.</p>
     </footer>
 
+    <!-- Скрипт отправки формы в n8n -->
     <script>
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = e.target.querySelector('button');
             const responseDiv = document.getElementById('responseMessage');
+            
+            // Визуальное изменение кнопки при загрузке
             btn.disabled = true;
             btn.textContent = 'Отправка...';
 
@@ -93,8 +251,8 @@
             };
 
             try {
-                // ЗАМЕНИТЬ НА СВОЙ PRODUCTION WEBHOOK URL ИЗ N8N
-                const webhookUrl = 'https://ai2.mnu.kz/webhook/YOUR-WEBHOOK-ID'; 
+                // Твоя ссылка Webhook (POST)
+                const webhookUrl = 'https://ai2.mnu.kz/webhook/9d168e8a-5757-4ce7-983b-c14ed7864a9f'; 
                 
                 const response = await fetch(webhookUrl, {
                     method: 'POST',
@@ -103,16 +261,17 @@
                 });
 
                 if (response.ok) {
-                    responseDiv.style.color = 'green';
-                    responseDiv.textContent = 'Thank you, we will contact you shortly'; // Response to the page 
+                    responseDiv.style.color = '#d4a373';
+                    // 6. Response to the page: Успешное сообщение для пользователя
+                    responseDiv.textContent = 'Thank you, we will contact you shortly'; 
                     e.target.reset();
                 } else {
                     responseDiv.style.color = 'red';
-                    responseDiv.textContent = 'Ошибка валидации или сервера. Проверьте данные.';
+                    responseDiv.textContent = 'Ошибка валидации формы. Проверьте правильность email.';
                 }
             } catch (error) {
                 responseDiv.style.color = 'red';
-                responseDiv.textContent = 'Ошибка сети. Попробуйте позже.';
+                responseDiv.textContent = 'Ошибка соединения. Убедитесь, что Workflow запущен.';
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Отправить запрос';
