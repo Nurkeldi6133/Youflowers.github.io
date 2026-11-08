@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouFlowers — букеты с доставкой в Астане</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#231c26;
+  --berry:#a8325e;
+  --berry-dark:#862649;
+  --blush:#f8e3e8;
+  --sage:#dfe8dc;
+  --leaf:#2f4a3a;
+  --paper:#fffbfb;
+  --line:#ecd9de;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Manrope',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+h1,h2,h3{font-family:'Prata',serif;font-weight:400;margin:0;line-height:1.12}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* Header */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,251,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Prata',serif;font-size:1.6rem;text-decoration:none;color:var(--ink)}
+.logo b{font-weight:400;color:var(--berry)}
+nav{display:flex;gap:28px;align-items:center}
+nav a{text-decoration:none;font-size:.95rem;font-weight:500}
+nav a:hover{color:var(--berry)}
+.btn{display:inline-block;background:var(--berry);color:#fff;border:none;border-radius:999px;padding:14px 30px;font:600 .98rem 'Manrope',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--berry-dark)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.nav-btn{padding:10px 22px}
+
+/* Hero */
+.hero{padding:64px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.7rem);letter-spacing:-.01em}
+.hero p.lead{font-size:1.15rem;max-width:30rem;margin:24px 0 34px;color:#5a4d5c}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
+.facts{display:flex;gap:36px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.facts div{font-size:.9rem;color:#5a4d5c}
+.facts strong{display:block;font-family:'Prata',serif;font-weight:400;font-size:1.5rem;color:var(--ink)}
+.arches{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
+.arch{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--blush),#f3c9d4);border-radius:999px 999px 18px 18px}
+.arch:nth-child(1){aspect-ratio:3/4.4}
+.arch:nth-child(2){aspect-ratio:3/3.6;background:linear-gradient(160deg,var(--sage),#c4d6c0)}
+.arch img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Sections */
+section{padding:84px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-size:clamp(2rem,4vw,3rem)}
+.head p{margin:10px 0 0;color:#5a4d5c;max-width:32rem}
+
+/* Catalog */
+#catalog{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 18px;font:500 .9rem 'Manrope',sans-serif;cursor:pointer}
+.chip:hover{border-color:var(--berry)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 22px}
+.product{display:flex;flex-direction:column}
+.photo{position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,var(--blush),#efbccb)}
+.photo.g2{background:linear-gradient(160deg,var(--sage),#bcd0b8)}
+.photo.g3{background:linear-gradient(160deg,#f5e6c8,#ecc9a0)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.product:hover .photo img{transform:scale(1.04)}
+.tag{position:absolute;left:12px;top:12px;background:var(--paper);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600}
+.product h3{font-size:1.25rem;margin:16px 0 4px}
+.product .desc{font-size:.9rem;color:#6a5d6c;margin:0 0 14px;flex:1}
+.buy{display:flex;align-items:center;justify-content:space-between}
+.price{font-weight:700;font-size:1.1rem}
+.buy .btn{padding:10px 20px;font-size:.9rem}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff}
+.service{padding:38px 32px}
+.service+.service{border-left:1px solid var(--line)}
+.service h3{font-size:1.45rem;margin-bottom:12px}
+.service p{margin:0;color:#5a4d5c}
+
+/* Reviews */
+#proof{background:var(--leaf);color:#fff}
+#proof .head p{color:#cfdcd2}
+.reviews{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:22px;align-items:stretch}
+.review{background:rgba(255,255,255,.08);border-radius:20px;padding:34px 30px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.review p{margin:0;font-size:1.05rem}
+.review cite{font-style:normal;font-weight:600;color:#f1c6d3}
+.review.stat{background:var(--blush);color:var(--ink);justify-content:center;text-align:center}
+.review.stat strong{font-family:'Prata',serif;font-weight:400;font-size:3.6rem;color:var(--berry);line-height:1}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.contact h2{font-size:clamp(2rem,4vw,3rem)}
+.contact .info{margin-top:26px;color:#5a4d5c}
+.contact .info p{margin:6px 0}
+form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:16px}
+label{font-size:.85rem;font-weight:600;display:block;margin-bottom:6px}
+input,textarea{width:100%;padding:14px 16px;font:400 1rem 'Manrope',sans-serif;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--berry)}
+#responseMessage{text-align:center;font-weight:600;min-height:1.4em}
+
+footer{background:var(--ink);color:#b9aebb;padding:40px 0;text-align:center;font-size:.92rem}
+footer p{margin:4px 0}
+
+@media(max-width:900px){
+  .hero .wrap,.contact{grid-template-columns:1fr}
+  .services,.reviews{grid-template-columns:1fr}
+  .service+.service{border-left:none;border-top:1px solid var(--line)}
+  nav a:not(.btn){display:none}
+  .facts{gap:22px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#" class="logo">You<b>Flowers</b></a>
+    <nav>
+      <a href="#catalog">Каталог</a>
+      <a href="#services">Услуги</a>
+      <a href="#proof">Отзывы</a>
+      <a href="#contact" class="btn nav-btn">Заказать</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Цветы, которые говорят за вас</h1>
+      <p class="lead">Авторские букеты из свежих цветов. Соберём под повод и бюджет, привезём по Астане за 1 час.</p>
+      <div class="actions">
+        <a href="#catalog" class="btn">Выбрать букет</a>
+        <a href="#contact" class="btn ghost">Заказать индивидуальный</a>
+      </div>
+      <div class="facts">
+        <div><strong>1 час</strong>доставка по городу</div>
+        <div><strong>5 000+</strong>букетов за год</div>
+        <div><strong>7 дней</strong>свежесть цветов</div>
+      </div>
+    </div>
+    <div class="arches" aria-hidden="true">
+      <div class="arch"><img src="https://images.unsplash.com/photo-1490750967868-88cb4ec06509?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.remove()"></div>
+      <div class="arch"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.remove()"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Catalog -->
+<section id="catalog">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Каталог букетов</h2>
+        <p>Нажмите «Заказать», и название букета попадёт в форму заявки.</p>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Фильтр по категории">
+        <button class="chip" data-cat="all" aria-pressed="true">Все</button>
+        <button class="chip" data-cat="Розы" aria-pressed="false">Розы</button>
+        <button class="chip" data-cat="Пионы" aria-pressed="false">Пионы</button>
+        <button class="chip" data-cat="Микс" aria-pressed="false">Микс</button>
+        <button class="chip" data-cat="Свадьба" aria-pressed="false">Свадьба</button>
+      </div>
+    </div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="wrap">
+    <div class="head"><h2>Что мы делаем</h2></div>
+    <div class="services">
+      <div class="service">
+        <h3>Авторские букеты</h3>
+        <p>Эксклюзивные композиции от шеф-флориста под любой повод и бюджет.</p>
+      </div>
+      <div class="service">
+        <h3>Свадебная флористика</h3>
+        <p>Букет невесты, бутоньерки и цветочное оформление зала.</p>
+      </div>
+      <div class="service">
+        <h3>Подписка на цветы</h3>
+        <p>Свежие цветы раз в неделю домой или в офис.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="proof">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Почему выбирают нас</h2>
+        <p>Клиенты возвращаются за букетами, которые долго стоят и красиво выглядят.</p>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="review">
+        <p>«Потрясающий сервис! Заказала букет маме на юбилей — цветы простояли больше недели. Очень красиво и стильно.»</p>
+        <cite>Анна С.</cite>
+      </div>
+      <div class="review stat">
+        <strong>5 000+</strong>
+        <p>доставленных букетов за этот год</p>
+      </div>
+      <div class="review">
+        <p>«Единственный магазин в городе, где собирают такие нестандартные композиции с экзотикой. Спасибо!»</p>
+        <cite>Михаил В.</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>Оставьте заявку</h2>
+      <div class="info">
+        <p>Расскажите, какой букет нужен и на какую дату. Мы свяжемся с вами и всё уточним.</p>
+        <p><strong>Астана, ул. Цветочная, 15</strong></p>
+        <p>+7 (777) 123-45-67</p>
+        <p>hello@youflowers.test</p>
+      </div>
+    </div>
+    <form id="leadForm">
+      <div><label for="name">Ваше имя</label><input type="text" id="name" placeholder="Например, Айдана" required></div>
+      <div><label for="email">Email</label><input type="email" id="email" placeholder="name@mail.com" required></div>
+      <div><label for="message">Какой букет и на какую дату?</label><textarea id="message" rows="4" placeholder="Например: 15 роз, доставка 8 марта к 10:00" required></textarea></div>
+      <button type="submit" class="btn">Отправить запрос</button>
+      <div id="responseMessage" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>YouFlowers · Астана, ул. Цветочная, 15 · hello@youflowers.test · +7 (777) 123-45-67</p>
+  <p>© 2026 YouFlowers. Все права защищены.</p>
+</footer>
+
+<script>
+/* ---------- Каталог ---------- */
+const bouquets = [
+  {name:'Нежность',cat:'Розы',price:'18 000 ₸',tag:'Хит',desc:'25 кустовых роз пудрового оттенка в крафтовой упаковке.',img:'photo-1455659817273-f96807779a8a'},
+  {name:'Красная классика',cat:'Розы',price:'24 000 ₸',tag:'',desc:'31 красная роза с зеленью, перевязана атласной лентой.',img:'photo-1518709268805-4e9042af9f23'},
+  {name:'Пионовое облако',cat:'Пионы',price:'32 000 ₸',tag:'Сезон',desc:'11 розовых пионов с эвкалиптом. Нежный и пышный букет.',img:'photo-1487530811176-3780de880c2d'},
+  {name:'Белый сад',cat:'Пионы',price:'28 000 ₸',tag:'',desc:'Белые пионы, ранункулюсы и веточки зелени.',img:'photo-1526047932273-341f2a7631f9'},
+  {name:'Полевое настроение',cat:'Микс',price:'15 000 ₸',tag:'',desc:'Яркий микс сезонных цветов в лёгкой упаковке.',img:'photo-1490750967868-88cb4ec06509'},
+  {name:'Закатный микс',cat:'Микс',price:'21 000 ₸',tag:'Новинка',desc:'Герберы, хризантемы и розы в тёплых оранжево-розовых тонах.',img:'photo-1563241527-3004b7be0ffd'},
+  {name:'Букет невесты',cat:'Свадьба',price:'35 000 ₸',tag:'',desc:'Нежные розы, фрезия и зелень. Подберём под ваше платье.',img:'photo-1519378058457-4c29a0a2efac'},
+  {name:'Бутоньерка',cat:'Свадьба',price:'4 500 ₸',tag:'',desc:'Мини-композиция для жениха в цвет свадебного букета.',img:'photo-1508610048659-a06b669e3321'}
+];
+
+const grid = document.getElementById('products');
+function render(cat){
+  grid.innerHTML = '';
+  bouquets.filter(b => cat === 'all' || b.cat === cat).forEach((b,i) => {
+    const el = document.createElement('article');
+    el.className = 'product';
+    el.innerHTML =
+      '<div class="photo g'+(i%3+1)+'">' +
+        '<img loading="lazy" alt="Букет «'+b.name+'»" src="https://images.unsplash.com/'+b.img+'?auto=format&fit=crop&w=600&q=80" onerror="this.remove()">' +
+        (b.tag ? '<span class="tag">'+b.tag+'</span>' : '') +
+      '</div>' +
+      '<h3>'+b.name+'</h3>' +
+      '<p class="desc">'+b.desc+'</p>' +
+      '<div class="buy"><span class="price">'+b.price+'</span>' +
+      '<button class="btn" data-name="'+b.name+'">Заказать</button></div>';
+    grid.appendChild(el);
+  });
+}
+render('all');
+
+document.getElementById('chips').addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed','false'));
+  chip.setAttribute('aria-pressed','true');
+  render(chip.dataset.cat);
+});
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('button[data-name]');
+  if(!btn) return;
+  const msg = document.getElementById('message');
+  msg.value = 'Хочу заказать букет «' + btn.dataset.name + '». Дата и время доставки: ';
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  setTimeout(() => msg.focus(), 500);
+});
+
+/* ---------- Отправка формы в n8n (логика без изменений) ---------- */
+document.getElementById('leadForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const responseDiv = document.getElementById('responseMessage');
+
+  btn.disabled = true;
+  btn.textContent = 'Отправка...';
+
+  const data = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    message: document.getElementById('message').value
+  };
+
+  try {
+    const webhookUrl = 'https://ai2.mnu.kz/webhook/9d168e8a-5757-4ce7-983b-c14ed7864a9f';
+
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      responseDiv.style.color = '#2f4a3a';
+      responseDiv.textContent = 'Thank you, we will contact you shortly';
+      e.target.reset();
+    } else {
+      responseDiv.style.color = '#b00020';
+      responseDiv.textContent = 'Ошибка валидации формы. Проверьте правильность email.';
+    }
+  } catch (error) {
+    responseDiv.style.color = '#b00020';
+    responseDiv.textContent = 'Ошибка соединения. Убедитесь, что Workflow запущен.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Отправить запрос';
+  }
+});
+</script>
+</body>
+</html>
